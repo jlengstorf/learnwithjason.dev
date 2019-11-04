@@ -27,7 +27,7 @@ export default {
     {
       name: 'date',
       type: 'datetime',
-      title: 'Recording Date',
+      title: 'Episode Date',
     },
     {
       name: 'guest',
