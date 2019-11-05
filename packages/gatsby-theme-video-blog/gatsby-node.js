@@ -46,7 +46,7 @@ exports.createSchemaCustomization = ({ actions, schema, getNode }) => {
         links: { type: '[String!]' },
         isFuture: {
           type: 'Boolean!',
-          resolve: source => new Date(source.date) > new Date(),
+          resolve: source => new Date(source.date) >= new Date(),
         },
         image: {
           type: 'SanityImageAsset!',
@@ -181,6 +181,7 @@ exports.onCreateNode = async ({
 
   await actions.createNode({
     ...newNode,
+    parent: node.id,
     internal: {
       type,
       contentDigest: createContentDigest(newNode),
@@ -195,7 +196,9 @@ exports.createPages = async (
 ) => {
   const result = await graphql(`
     {
-      allVideoEpisode {
+      allVideoEpisode(
+        filter: { youtubeID: { ne: null }, isFuture: { eq: false } }
+      ) {
         nodes {
           slug
           isFuture
@@ -211,24 +214,12 @@ exports.createPages = async (
   const past = result.data.allVideoEpisode.nodes.filter(
     episode => !episode.isFuture,
   );
-  const upcoming = result.data.allVideoEpisode.nodes.filter(
-    episode => episode.isFuture,
-  );
 
   past.forEach(({ slug }) => {
     debug(`creating a page for ${slug}`);
     actions.createPage({
       path: path.join(basePath, slug),
       component: require.resolve('./src/templates/video-template.js'),
-      context: { slug, basePath },
-    });
-  });
-
-  upcoming.forEach(({ slug }) => {
-    debug(`creating an event page for ${slug}`);
-    actions.createPage({
-      path: path.join(basePath, slug),
-      component: require.resolve('./src/templates/event-template.js'),
       context: { slug, basePath },
     });
   });
