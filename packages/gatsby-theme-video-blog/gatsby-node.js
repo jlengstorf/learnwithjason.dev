@@ -196,10 +196,9 @@ exports.createPages = async (
 ) => {
   const result = await graphql(`
     {
-      allVideoEpisode(
-        filter: { youtubeID: { ne: null }, isFuture: { eq: false } }
-      ) {
+      allVideoEpisode {
         nodes {
+          id
           slug
           isFuture
         }
@@ -212,7 +211,7 @@ exports.createPages = async (
   }
 
   const past = result.data.allVideoEpisode.nodes.filter(
-    episode => !episode.isFuture,
+    episode => !episode.isFuture || !episode.youtubeID,
   );
 
   past.forEach(({ slug }) => {
@@ -221,6 +220,19 @@ exports.createPages = async (
       path: path.join(basePath, slug),
       component: require.resolve('./src/templates/video-template.js'),
       context: { slug, basePath },
+    });
+  });
+
+  const upcoming = result.data.allVideoEpisode.nodes.filter(episode => {
+    episode.isFuture;
+  });
+
+  past.forEach(({ id, slug }) => {
+    debug(`creating a page for ${slug}`);
+    actions.createPage({
+      path: path.join(basePath, slug),
+      component: require.resolve('./src/templates/event-template.js'),
+      context: { pageID: id, slug, basePath },
     });
   });
 
