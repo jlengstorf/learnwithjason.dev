@@ -1,9 +1,15 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { Link } from 'gatsby';
+import { useEffect, useState } from 'react';
 import Image from 'gatsby-image';
 
-const Event = ({ title, description, date, image, basePath, slug }) => {
+const Event = ({ title, description, guest, date, image, basePath, slug }) => {
+  const [calendarLink, setCalendarLink] = useState(false);
+
+  if (typeof guest !== 'object') {
+    guest = [];
+  }
+
   const localeDate = new Date(date).toLocaleString('en-US', {
     timeZone: 'America/Los_Angeles',
     weekday: 'long',
@@ -13,6 +19,28 @@ const Event = ({ title, description, date, image, basePath, slug }) => {
     minute: 'numeric',
     timeZoneName: 'short',
   });
+
+  useEffect(() => {
+    const startTS = Date.parse(date); // get a Unix timestamp (milliseconds)
+    const endTS = startTS + 1000 * 60 * 90; // add 90 minutes
+    const start = new Date(startTS)
+      .toISOString()
+      .replace('.000', '')
+      .replace(/\W/g, '');
+    const end = new Date(endTS)
+      .toISOString()
+      .replace('.000', '')
+      .replace(/\W/g, '');
+    const link = new URL('https://www.google.com/calendar/render');
+    link.searchParams.set('action', 'TEMPLATE');
+    link.searchParams.set('text', title);
+    link.searchParams.set('details', description);
+    link.searchParams.set('location', 'https://twitch.tv/jlengstorf');
+    link.searchParams.set('dates', `${start}/${end}`);
+    link.searchParams.set('ctz', `America/Los_Angeles`);
+
+    setCalendarLink(link.toString());
+  }, [date, title, description]);
 
   return (
     <div
@@ -37,18 +65,40 @@ const Event = ({ title, description, date, image, basePath, slug }) => {
         {localeDate}
       </p>
       <div>
-        <Link to={`/${basePath}/${slug}/`}>
-          <Image fluid={image.fluid} alt={title} />
-        </Link>
+        <Image fluid={image.fluid} alt={title} />
       </div>
       <div>
-        <h2 sx={{ m: 0, mt: [3, 0] }}>
-          <Link to={`/${basePath}/${slug}/`}>{title}</Link>
-        </h2>
-        <p sx={{ m: 0, mt: 2 }}>{description}</p>
-        <p sx={{ m: 0, mt: 2 }}>
-          <Link to={`/${basePath}/${slug}/`}>View details &rarr;</Link>
+        <h2 sx={{ m: 0, mt: [3, 0] }}>{title}</h2>
+        <p
+          sx={{
+            fontSize: 0,
+            letterSpacing: '0.1em',
+            mt: 0,
+            textTransform: 'uppercase',
+          }}
+        >
+          Guest:{' '}
+          {guest.map(g => (
+            <a
+              href={`https://twitter.com/${g.twitter}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {g.name}
+            </a>
+          ))}
         </p>
+        <p sx={{ m: 0, mt: 2 }}>{description}</p>
+        {calendarLink && (
+          <a
+            href={calendarLink}
+            sx={{ variant: 'button' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Add to Google Calendar
+          </a>
+        )}
       </div>
     </div>
   );
@@ -65,6 +115,7 @@ const EventList = ({ videos, basePath }) => {
           date={video.date}
           image={video.image}
           slug={video.slug}
+          guest={video.guest}
           basePath={basePath}
         />
       ))}

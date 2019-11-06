@@ -180,7 +180,7 @@ export default {
 
   button: {
     // specificity haaaaaaaack
-    '&&': { color: 'background' },
+    '&&': { color: 'heading' },
     bg: 'primary',
     borderRadius: 6,
     display: 'inline-block',
