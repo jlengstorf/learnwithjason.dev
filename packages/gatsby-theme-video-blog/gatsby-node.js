@@ -223,11 +223,11 @@ exports.createPages = async (
     });
   });
 
-  const upcoming = result.data.allVideoEpisode.nodes.filter(episode => {
-    episode.isFuture;
-  });
+  const upcoming = result.data.allVideoEpisode.nodes.filter(
+    episode => episode.isFuture,
+  );
 
-  past.forEach(({ id, slug }) => {
+  upcoming.forEach(({ id, slug }) => {
     debug(`creating a page for ${slug}`);
     actions.createPage({
       path: path.join(basePath, slug),
