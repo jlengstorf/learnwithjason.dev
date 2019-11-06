@@ -7,7 +7,7 @@ export const query = graphql`
   {
     allVideoEpisode(
       sort: { order: DESC, fields: date }
-      filter: { isFuture: { eq: false } }
+      filter: { youtubeID: { ne: null }, isFuture: { eq: false } }
     ) {
       nodes {
         id
