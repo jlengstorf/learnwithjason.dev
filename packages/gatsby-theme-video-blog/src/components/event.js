@@ -38,7 +38,6 @@ const Event = ({ title, description, guest, date, image, slug, basePath }) => {
     link.searchParams.set('details', description);
     link.searchParams.set('location', 'https://twitch.tv/jlengstorf');
     link.searchParams.set('dates', `${start}/${end}`);
-    link.searchParams.set('ctz', `America/Los_Angeles`);
 
     setCalendarLink(link.toString());
   }, [date, title, description]);
