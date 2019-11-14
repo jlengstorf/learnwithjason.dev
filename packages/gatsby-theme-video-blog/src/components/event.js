@@ -46,9 +46,10 @@ const Event = ({ title, description, guest, date, image, slug, basePath }) => {
     <Fragment>
       <SEO
         title={`${title} (with ${guest.map(g => g.name).join()})`}
-        description={description}
+        description={`${localeDate} — ${description}`}
         image={image.fluid.src}
         author={{ twitter: '@LWJShow' }}
+        date={date}
         path={`/${basePath}/${slug}`.replace(/\/+/g, '/')}
       />
       <div

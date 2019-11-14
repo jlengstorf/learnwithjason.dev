@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const SEO = ({ title, description, path, image, author }) => {
+const SEO = ({ title, description, path, image, author, date = false }) => {
   const data = useStaticQuery(graphql`
     {
       site {
@@ -26,11 +26,16 @@ const SEO = ({ title, description, path, image, author }) => {
     return null;
   }
 
+  const startTS = Date.parse(date); // get a Unix timestamp (milliseconds)
+  const endTS = startTS + 1000 * 60 * 90; // add 90 minutes
+
   const seo = {
     title: title || defaults.title,
     description: description || defaults.description,
     url: new URL(path || '', defaults.baseUrl),
     image: image ? new URL(image, defaults.baseUrl) : false,
+    startDate: new Date(startTS).toISOString(),
+    endDate: new Date(endTS).toISOString(),
   };
 
   return (
@@ -51,6 +56,25 @@ const SEO = ({ title, description, path, image, author }) => {
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       {seo.image && <meta name="twitter:image" content={seo.image} />}
+
+      {date && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'http://schema.org',
+            '@type': 'Event',
+            name: seo.title,
+            url: seo.url,
+            description: seo.description,
+            startDate: seo.startDate,
+            endDate: seo.endDate,
+            organizer: {
+              '@type': 'Organization',
+              name: 'Learn With Jason',
+              url: 'https://learnwithjason.dev/',
+            },
+          })}
+        </script>
+      )}
     </Helmet>
   );
 };
