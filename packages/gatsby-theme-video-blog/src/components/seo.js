@@ -34,16 +34,16 @@ const SEO = ({
     return null;
   }
 
-  const startTS = Date.parse(date); // get a Unix timestamp (milliseconds)
-  const endTS = startTS + 1000 * 60 * 90; // add 90 minutes
+  const startTS = date && Date.parse(date); // get a Unix timestamp (milliseconds)
+  const endTS = date && startTS + 1000 * 60 * 90; // add 90 minutes
 
   const seo = {
     title: title || defaults.title,
     description: description || defaults.description,
     url: new URL(path || '', defaults.baseUrl),
     image: image ? new URL(image, defaults.baseUrl) : false,
-    startDate: new Date(startTS).toISOString(),
-    endDate: new Date(endTS).toISOString(),
+    startDate: date && new Date(startTS).toISOString(),
+    endDate: date && new Date(endTS).toISOString(),
   };
 
   return (
