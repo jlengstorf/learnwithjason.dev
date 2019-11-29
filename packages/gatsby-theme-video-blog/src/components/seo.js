@@ -2,7 +2,15 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
-const SEO = ({ title, description, path, image, author, date = false }) => {
+const SEO = ({
+  title,
+  description,
+  path,
+  image,
+  author,
+  guest,
+  date = false,
+}) => {
   const data = useStaticQuery(graphql`
     {
       site {
@@ -67,10 +75,25 @@ const SEO = ({ title, description, path, image, author, date = false }) => {
             description: seo.description,
             startDate: seo.startDate,
             endDate: seo.endDate,
+            image: seo.image,
+            performer: guest.map(g => ({
+              '@type': 'Person',
+              name: g.name,
+              sameAs: `https://twitter.com/${g.twitter}`,
+            })),
+            location: {
+              '@type': 'Place',
+              name: 'Jason Lengstorf’s Twitch Profile',
+              address: 'https://twitch.tv/jlengstorf',
+            },
             organizer: {
               '@type': 'Organization',
               name: 'Learn With Jason',
               url: 'https://learnwithjason.dev/',
+            },
+            offers: {
+              '@type': 'Offer',
+              url: seo.url,
             },
           })}
         </script>

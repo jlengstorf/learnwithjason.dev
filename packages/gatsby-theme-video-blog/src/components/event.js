@@ -42,12 +42,18 @@ const Event = ({ title, description, guest, date, image, slug, basePath }) => {
     setCalendarLink(link.toString());
   }, [date, title, description]);
 
+  const seoDescription = description.replace(
+    / \(https:\/\/twitter.com\/.*?\)/g,
+    '',
+  );
+
   return (
     <Fragment>
       <SEO
         title={`${title} (with ${guest.map(g => g.name).join()})`}
-        description={`${localeDate} — ${description}`}
+        description={`${localeDate} — ${seoDescription}`}
         image={image.fluid.src}
+        guest={guest}
         author={{ twitter: '@LWJShow' }}
         date={date}
         path={`/${basePath}/${slug}`.replace(/\/+/g, '/')}
