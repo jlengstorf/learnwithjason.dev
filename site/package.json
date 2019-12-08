@@ -24,11 +24,7 @@
     "gatsby-plugin-theme-ui": "^0.2.34",
     "gatsby-remark-autolink-headers": "^2.1.8",
     "gatsby-theme-video-blog": "*",
-<<<<<<< HEAD
     "netlify-plugin-gatsby-cache": "^0.1.2",
-=======
-    "netlify-plugin-gatsby-cache": "^0.0.1",
->>>>>>> 3d645ac4e61434f314ce959cfc20ab291b9cc51a
     "polished": "^3.4.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
