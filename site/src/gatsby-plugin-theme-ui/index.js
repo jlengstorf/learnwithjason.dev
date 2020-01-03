@@ -1,3 +1,4 @@
+import nightOwl from '@theme-ui/prism/presets/night-owl.json';
 import { transparentize } from 'polished';
 
 const defaultFontStack = [
@@ -124,11 +125,15 @@ export default {
   styles: {
     h1: {
       color: 'heading',
+      fontSize: 4,
       lineHeight: 'heading',
       m: 0,
       mt: 4,
       '&:first-of-type': {
         mt: 0,
+      },
+      '@media (min-width: 750px)': {
+        fontSize: 5,
       },
     },
     h2: {
@@ -175,6 +180,18 @@ export default {
       '&:first-of-type': {
         mt: 0,
       },
+    },
+    pre: {
+      fontSize: 1,
+      overflowX: 'scroll',
+      mx: '-5vw',
+      p: 3,
+      '@media (min-width: calc(54ch + 10vw))': {
+        borderRadius: 2,
+      },
+    },
+    code: {
+      ...nightOwl,
     },
   },
 
