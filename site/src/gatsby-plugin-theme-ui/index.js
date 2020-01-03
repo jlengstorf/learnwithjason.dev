@@ -83,7 +83,7 @@ export default {
     primary: colors.magenta[3],
     secondary: colors.purple[2],
     accent: colors.yellow[3],
-    muted: colors.teal[1],
+    muted: colors.blue[4],
     text: colors.gray[5],
     heading: colors.purple[6],
     link: colors.purple[5],
