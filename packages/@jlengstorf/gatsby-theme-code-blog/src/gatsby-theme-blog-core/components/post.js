@@ -55,11 +55,12 @@ const Post = ({ data: { blogPost, previous, next } }) => {
       <header>
         <h1
           sx={{
+            color: 'heading',
             fontSize: 4,
             lineHeight: 'heading',
             mt: 4,
             '@media (min-width: 750px)': {
-              fontSize: 5,
+              fontSize: 6,
             },
           }}
         >

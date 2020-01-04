@@ -85,6 +85,7 @@ export default {
     accent: colors.yellow[3],
     muted: colors.blue[4],
     text: colors.gray[5],
+    textLight: colors.gray[4],
     heading: colors.purple[6],
     link: colors.purple[5],
     modes: {
@@ -96,6 +97,7 @@ export default {
         accent: colors.yellow[3],
         muted: colors.teal[1],
         text: colors.blue[0],
+        textLight: colors.blue[1],
         link: colors.yellow[3],
         heading: 'white',
       },
@@ -133,11 +135,12 @@ export default {
         mt: 0,
       },
       '@media (min-width: 750px)': {
-        fontSize: 5,
+        fontSize: 6,
       },
     },
     h2: {
       color: 'heading',
+      fontSize: 5,
       lineHeight: 'heading',
       m: 0,
       mt: 4,
@@ -147,6 +150,7 @@ export default {
     },
     h3: {
       color: 'heading',
+      fontSize: 4,
       lineHeight: 'heading',
       m: 0,
       mt: 4,
@@ -157,6 +161,7 @@ export default {
     h4: {
       color: 'heading',
       lineHeight: 'heading',
+      fontSize: 3,
       m: 0,
       mt: 4,
       '&:first-of-type': {
