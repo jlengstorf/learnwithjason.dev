@@ -56,7 +56,7 @@ const Post = ({ data: { blogPost, previous, next } }) => {
     title: blogPost.title,
     tagline: blogPost.tags.map(tag => `#${tag}`).join(' '),
     cloudName: 'jlengstorf',
-    imagePublicID: 'lwj/blog-post.card',
+    imagePublicID: 'lwj/blog-post-card',
     font: 'futura',
     textColor: '232129',
   });
