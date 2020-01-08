@@ -27,4 +27,4 @@
   status = 200
 
 [[plugins]]
-  type = "netlify-plugin-gatsby-cache"
+  package = "netlify-plugin-gatsby-cache"
