@@ -9935,10 +9935,10 @@ nerf-dart@^1.0.0:
   resolved "https://registry.yarnpkg.com/nerf-dart/-/nerf-dart-1.0.0.tgz#e6dab7febf5ad816ea81cf5c629c5a0ebde72c1a"
   integrity sha1-5tq3/r9a2Bbqgc9cYpxaDr3nLBo=
 
-netlify-plugin-gatsby-cache@^0.2.1-canary.1:
-  version "0.2.1-canary.1"
-  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.1-canary.1.tgz#d2970d7af075ad25bf6fc0728f8b7e47294b39b7"
-  integrity sha512-YRNMy4354KOA3kpsMu7wgLL5BOngJTH+eqZoQoTQThgTjaVW0U7jtzNeSKNn9DzG3MuvDuwx9kPVwKRPnIfx/g==
+netlify-plugin-gatsby-cache@^0.2.1-canary.2:
+  version "0.2.1-canary.2"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.1-canary.2.tgz#15bb2c0ee258c9026092e15badac4bcd49dd8d11"
+  integrity sha512-JP0UhOlU9h+djil6ynCc+Wbs4PQYEelDLM85DwWVieLnrfgOVp2Wt9vmVQTe30jC9QYYxROg3xSN9BvKCNxl2Q==
 
 next-tick@^1.0.0:
   version "1.0.0"
