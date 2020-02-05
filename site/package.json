@@ -36,7 +36,6 @@
     "react-helmet": "^5.2.1",
     "react-youtube": "^7.9.0",
     "remark-slug": "^5.1.2",
-    "theme-ui": "^0.2.36",
-    "whats-in-the-cache": "^1.0.0"
+    "theme-ui": "^0.2.36"
   }
 }
