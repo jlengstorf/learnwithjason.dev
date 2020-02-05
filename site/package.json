@@ -28,7 +28,7 @@
     "gatsby-remark-images": "^3.1.39",
     "gatsby-remark-smartypants": "^2.1.19",
     "gatsby-theme-video-blog": "*",
-    "netlify-plugin-gatsby-cache": "^0.2.1-canary.9",
+    "netlify-plugin-gatsby-cache": "^0.2.1-canary.10",
     "netlify-plugin-pastel": "^0.0.1",
     "polished": "^3.4.1",
     "react": "^16.8.6",
@@ -36,6 +36,7 @@
     "react-helmet": "^5.2.1",
     "react-youtube": "^7.9.0",
     "remark-slug": "^5.1.2",
-    "theme-ui": "^0.2.36"
+    "theme-ui": "^0.2.36",
+    "whats-in-the-cache": "^1.0.0"
   }
 }

@@ -9976,10 +9976,10 @@ nerf-dart@^1.0.0:
   resolved "https://registry.yarnpkg.com/nerf-dart/-/nerf-dart-1.0.0.tgz#e6dab7febf5ad816ea81cf5c629c5a0ebde72c1a"
   integrity sha1-5tq3/r9a2Bbqgc9cYpxaDr3nLBo=
 
-netlify-plugin-gatsby-cache@^0.2.1-canary.9:
-  version "0.2.1-canary.9"
-  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.1-canary.9.tgz#aa874bb437f48e56afabd3e615e84db200bc409c"
-  integrity sha512-p1VgruukMaarCa6WrNrjgSmnAFPaoN7q3Tym3HOdSSGNy7kAouafAy2HMIZSeL1dvc+csYjdtgce8a1qvaUDYQ==
+netlify-plugin-gatsby-cache@^0.2.1-canary.10:
+  version "0.2.1-canary.10"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.1-canary.10.tgz#ddd114fcc4ddbd4b270409d6557a33a68262dc0c"
+  integrity sha512-R0uvJQAt+j+sBQxvqK7UmIHYSlx2it3zavDt2QVReNiTAyza/VhHkI5/aiuHINUMMPaVv3LLC5GOjDZ2HRn8yw==
   dependencies:
     whats-in-the-cache "^1.0.0"
 
