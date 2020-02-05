@@ -9976,12 +9976,10 @@ nerf-dart@^1.0.0:
   resolved "https://registry.yarnpkg.com/nerf-dart/-/nerf-dart-1.0.0.tgz#e6dab7febf5ad816ea81cf5c629c5a0ebde72c1a"
   integrity sha1-5tq3/r9a2Bbqgc9cYpxaDr3nLBo=
 
-netlify-plugin-gatsby-cache@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.0.tgz#ca13da9ea5158b2fd29bb22b48fd4efbcf6b7edd"
-  integrity sha512-zW92RwXYXCpH9wjPFCBL5osU9F0OiswB592tntPLYq8O67LZ7U9XYG/oYMImWZfYsy7o37EJmqDWG2M1RTz5Zg==
-  dependencies:
-    fs-extra "^8.1.0"
+netlify-plugin-gatsby-cache@^0.2.1-canary.5:
+  version "0.2.1-canary.5"
+  resolved "https://registry.yarnpkg.com/netlify-plugin-gatsby-cache/-/netlify-plugin-gatsby-cache-0.2.1-canary.5.tgz#8dd26847879ffa0707080fd357cbb361d0e89462"
+  integrity sha512-IxrBQxH9aGyuRQ6wLq1haKCCFDGaLFn5r6RuQC+J/YRlfFNsMkpnr69+Dd/1oSjRZgx1VkH8W64aYr7wZ8GR7A==
 
 netlify-plugin-pastel@^0.0.1:
   version "0.0.1"
