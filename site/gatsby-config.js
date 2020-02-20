@@ -73,7 +73,7 @@ module.exports = {
         },
         mentions: true,
         pingbacks: true,
-        domain: 'learnwithjason.dev',
+        domain: 'www.learnwithjason.dev',
         token: process.env.WEBMENTION_API_KEY,
       },
     },
