@@ -72,7 +72,7 @@ module.exports = {
           twitter: 'jlengstorf',
         },
         mentions: true,
-        pingbacks: false,
+        pingbacks: true,
         domain: 'learnwithjason.dev',
         token: process.env.WEBMENTION_API_KEY,
       },
