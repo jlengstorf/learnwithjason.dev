@@ -9,7 +9,7 @@ import {
 } from '@stripe/react-stripe-js';
 import inventory from '../../functions/data/products.json';
 
-const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_TEST_PK);
 
 const Products = () => {
   const stripe2 = useStripe();
