@@ -1,46 +1,45 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { loadStripe } from '@stripe/stripe-js';
+import { useShoppingCart } from 'use-shopping-cart';
 import inventory from '../../functions/data/products.json';
 
-const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
-
 const Products = () => {
+  const { addItem } = useShoppingCart();
   const format = (amount, currency) =>
     new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currency,
     }).format((amount / 100).toFixed(2));
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const form = new FormData(event.target);
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   const form = new FormData(event.target);
 
-    const data = {
-      sku: form.get('sku'),
-      quantity: Number(form.get('quantity')),
-    };
+  //   const data = {
+  //     sku: form.get('sku'),
+  //     quantity: Number(form.get('quantity')),
+  //   };
 
-    // TODO send to serverless function
-    const response = await fetch('/.netlify/functions/create-checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    }).then((res) => res.json());
+  //   // TODO send to serverless function
+  //   const response = await fetch('/.netlify/functions/create-checkout', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(data),
+  //   }).then((res) => res.json());
 
-    // TODO get the session ID and redirect to checkout
-    const stripe = await stripePromise;
+  //   // TODO get the session ID and redirect to checkout
+  //   const stripe = await stripePromise;
 
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: response.sessionId,
-    });
+  //   const { error } = await stripe.redirectToCheckout({
+  //     sessionId: response.sessionId,
+  //   });
 
-    if (error) {
-      console.error(error);
-    }
-  };
+  //   if (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <section
@@ -78,7 +77,7 @@ const Products = () => {
           >
             {format(product.amount, product.currency)}
           </p>
-          <form
+          {/* <form
             onSubmit={handleSubmit}
             sx={{ display: 'grid', gap: 2, gridTemplateColumns: 'auto 50px' }}
           >
@@ -103,30 +102,38 @@ const Products = () => {
                 p: 2,
               }}
             />
-            <input type="hidden" name="sku" value={product.sku} />
-            <button
-              sx={{
-                bg: 'primary',
-                border: 'none',
-                borderRadius: 2,
-                color: 'nav',
-                fontFamily: 'heading',
-                fontSize: 2,
-                fontWeight: 800,
-                gridColumn: '1 / 3',
-                p: 2,
-                textShadow: `
+            <input type="hidden" name="sku" value={product.sku} /> */}
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+
+              addItem({
+                ...product,
+                price: product.amount,
+              });
+            }}
+            sx={{
+              bg: 'primary',
+              border: 'none',
+              borderRadius: 2,
+              color: 'nav',
+              fontFamily: 'heading',
+              fontSize: 2,
+              fontWeight: 800,
+              gridColumn: '1 / 3',
+              p: 2,
+              textShadow: `
                   0.05em 0.05em #4F4F4F99,
                   0.05em -0.05em #4F4F4F99,
                   -0.05em 0.05em #4F4F4F99,
                   -0.05em -0.05em #4F4F4F99
                 `,
-                textTransform: 'uppercase',
-              }}
-            >
-              Buy Now
-            </button>
-          </form>
+              textTransform: 'uppercase',
+            }}
+          >
+            Add To Cart
+          </button>
+          {/* </form> */}
         </div>
       ))}
     </section>

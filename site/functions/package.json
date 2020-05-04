@@ -13,6 +13,7 @@
     "@stream-blitz/create-handler": "^0.1.0",
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
-    "stripe": "^8.38.0"
+    "stripe": "^8.38.0",
+    "use-shopping-cart": "^1.1.1"
   }
 }
