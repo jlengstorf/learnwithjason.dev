@@ -1,11 +1,44 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
+import { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import {
+  Elements,
+  PaymentRequestButtonElement,
+  useStripe,
+} from '@stripe/react-stripe-js';
 import inventory from '../../functions/data/products.json';
 
-const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_TEST_PK);
 
 const Products = () => {
+  const stripe2 = useStripe();
+  const [paymentRequest, setPaymentRequest] = useState(null);
+
+  useEffect(() => {
+    if (!stripe2 || paymentRequest !== null) {
+      return;
+    }
+
+    const request = stripe2.paymentRequest({
+      country: 'US',
+      currency: 'usd',
+      total: {
+        label: 'Sticker Pack Price',
+        amount: 1350,
+      },
+      requestPayerName: false,
+      requestPayerEmail: false,
+    });
+
+    request.canMakePayment().then((result) => {
+      console.log({ result });
+      if (result) {
+        setPaymentRequest(request);
+      }
+    });
+  }, [stripe2, paymentRequest]);
+
   const format = (amount, currency) =>
     new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -56,6 +89,13 @@ const Products = () => {
         },
       }}
     >
+      {paymentRequest && (
+        <p>
+          Buy the sticker pack with one click:
+          <PaymentRequestButtonElement options={{ paymentRequest }} />
+        </p>
+      )}
+
       {inventory.map((product) => (
         <div key={product.sku} sx={{ mt: 3 }}>
           <img
@@ -133,4 +173,12 @@ const Products = () => {
   );
 };
 
-export default Products;
+const WrappedProducts = () => {
+  return (
+    <Elements stripe={stripePromise}>
+      <Products />
+    </Elements>
+  );
+};
+
+export default WrappedProducts;
