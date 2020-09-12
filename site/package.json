@@ -33,6 +33,7 @@
     "gatsby-remark-images": "^3.1.39",
     "gatsby-remark-smartypants": "^2.1.19",
     "gatsby-theme-video-blog": "*",
+    "netlify-plugin-deploy-preview-commenting": "^0.0.1-alpha.0",
     "netlify-plugin-gatsby-cache": "^0.3.2",
     "node-fetch": "^2.6.0",
     "polished": "^3.4.1",
@@ -43,6 +44,7 @@
     "react-youtube": "^7.9.0",
     "remark-slug": "^6.0.0",
     "stripe": "^8.54.0",
-    "theme-ui": "^0.3.1"
+    "theme-ui": "^0.3.1",
+    "use-shopping-cart": "^2.1.0"
   }
 }
